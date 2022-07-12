@@ -30,7 +30,8 @@ import javafx.util.Duration;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Controller implements Initializable {
+public class GameController implements Initializable
+{
 
     @FXML
     private AnchorPane scene;
@@ -89,15 +90,24 @@ public class Controller implements Initializable {
         switch (event.getCode()) {
             case LEFT:
                 PADDLE_XPOSITION -= 1;
+
                 System.out.println("I pressed LEFT!");
                 paddle.setX(PADDLE_XPOSITION);
+
+                PADDLE_WIDTH = 150;
                 paddle.setWidth(PADDLE_WIDTH);
                 break;
             case RIGHT:
                 PADDLE_XPOSITION += 1;
+                PADDLE_WIDTH = 150;
                 System.out.println("I pressed RIGHT!");
-                paddle.setX(PADDLE_XPOSITION);
-                paddle.setWidth(PADDLE_WIDTH);
+
+                //paddle.setX(PADDLE_XPOSITION);
+                //paddle.se(PADDLE_XPOSITION);
+
+                paddle = new Rectangle(PADDLE_XPOSITION,PADDLE_YPOSITION,PADDLE_WIDTH,PADDLE_HEIGHT);
+
+                //paddle.setWidth(PADDLE_WIDTH);
                 break;
             default:
                 break;
