@@ -16,9 +16,19 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("game-view.fxml"));
+        // Load the FXML data into loader
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("game-view.fxml"));
+
+        // Create a new scene from that FXML data
+        Scene root = new Scene(loader.load());
+
+        //Calling requestFocus allows the keyevents to be read when application is ran
+        root.getRoot().requestFocus();
+
+        // Set the scene and display the stage
         primaryStage.setTitle("Pong With Me");
-        primaryStage.setScene(new Scene(root));
+        primaryStage.setScene(root);
         primaryStage.show();
     }
 

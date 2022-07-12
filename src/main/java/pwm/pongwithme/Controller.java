@@ -16,6 +16,8 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -38,6 +40,11 @@ public class Controller implements Initializable {
 
     @FXML
     Rectangle paddle;
+
+    private int PADDLE_XPOSITION = 10;
+    private int PADDLE_YPOSITION = 380;
+    private int PADDLE_WIDTH = 150;
+    private int PADDLE_HEIGHT = 20;
 
 
 
@@ -66,12 +73,37 @@ public class Controller implements Initializable {
                 deltaY *= -1;
             }
 
-            paddle = new Rectangle(10,380,150,20);
+            paddle = new Rectangle(PADDLE_XPOSITION,PADDLE_YPOSITION,PADDLE_WIDTH,PADDLE_HEIGHT);
 
             scene.getChildren().add(paddle);
         }
     }));
 
+    @FXML
+    private void handleOnKeyPressed(KeyEvent event)
+    {
+        System.out.println("Pressed key text: " + event.getText());
+        System.out.println("Pressed key code: " + event.getCode());
+        System.out.println(ball.getRadius());
+
+        switch (event.getCode()) {
+            case LEFT:
+                PADDLE_XPOSITION -= 1;
+                System.out.println("I pressed LEFT!");
+                paddle.setX(PADDLE_XPOSITION);
+                paddle.setWidth(PADDLE_WIDTH);
+                break;
+            case RIGHT:
+                PADDLE_XPOSITION += 1;
+                System.out.println("I pressed RIGHT!");
+                paddle.setX(PADDLE_XPOSITION);
+                paddle.setWidth(PADDLE_WIDTH);
+                break;
+            default:
+                break;
+        }
+
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
