@@ -36,4 +36,4 @@ go-to pattern for this application. The singleton pattern was helpful in enforci
 ![Class diagram](CSCI5448_Proj6_ClassDiagram.drawio.svg)
 
 ### Plan for next iteration<br/>
-For the final deliverable, we plan to have the collision detection implemented and real game scores reflected in the leaderboard. A stretch goal would include functionality for a custom player name.
+For the final deliverable, we plan to have the collision detection implemented and real game scores reflected in the leaderboard. A stretch goal would include functionality for a custom player name. We want to have a increasing game difficulty. We would like to make everything look nice as well. If we are able to, we would like to make the game work despite the window size. 
