@@ -60,33 +60,50 @@ public class GameController implements Initializable
     private double PADDLE_WIDTH = 150;
     private double PADDLE_HEIGHT = 20;
 
+    private double BALL_SPEED = 1;
+
+    private boolean GameIsRunning = false;
+
 
 
 
     //1 Frame evey 10 millis, which means 100 FPS
-    Timeline timeline = new Timeline(new KeyFrame(Duration.millis(10), new EventHandler<ActionEvent>() {
+    Timeline timeline = new Timeline(new KeyFrame(Duration.millis(10), new EventHandler<>() {
 
-        double deltaX = 2;
-        double deltaY = 2;
+        double deltaX = 2 * BALL_SPEED;
+        double deltaY = 2 * BALL_SPEED;
 
         @Override
         public void handle(ActionEvent actionEvent) {
-            ball.setLayoutX(ball.getLayoutX() + deltaX);
-            ball.setLayoutY(ball.getLayoutY() + deltaY);
+            if (GameIsRunning) {
+                ball.setLayoutX(ball.getLayoutX() + deltaX);
+                ball.setLayoutY(ball.getLayoutY() + deltaY);
 
-            Bounds bounds = scene.getBoundsInLocal();
-            boolean rightBorder = ball.getLayoutX() >= (bounds.getMaxX() - ball.getRadius());
-            boolean leftBorder = ball.getLayoutX() <= (bounds.getMinX() + ball.getRadius());
-            boolean bottomBorder = ball.getLayoutY() >= (bounds.getMaxY() - ball.getRadius());
-            boolean topBorder = ball.getLayoutY() <= (bounds.getMinY() + ball.getRadius());
+                Bounds bounds = scene.getBoundsInLocal();
+                boolean rightBorder = ball.getLayoutX() >= (bounds.getMaxX() - ball.getRadius());
+                boolean leftBorder = ball.getLayoutX() <= (bounds.getMinX() + ball.getRadius());
+                boolean bottomBorder = ball.getLayoutY() >= (bounds.getMaxY() - ball.getRadius());
+                boolean topBorder = ball.getLayoutY() <= (bounds.getMinY() + ball.getRadius());
 
-            if (rightBorder || leftBorder) {
-                deltaX *= -1;
+                if (rightBorder || leftBorder) {
+                    deltaX *= -1;
+                    if(topBorder)
+                    {
+                        deltaY *= -1;
+                    }
+                }
+                else if (topBorder) {
+                    deltaY *= -1;
+                } else if (ball.getLayoutX() - PADDLE_XPOSITION <= 0 && ball.getLayoutY() - PADDLE_YPOSITION <= 0) {
+                    if(bottomBorder)
+                    {
+                        deltaX *= -1;
+                        deltaY *= -1;
+                    }
+                } else if (bottomBorder) {
+                    GameIsRunning = false;
+                }
             }
-            if (bottomBorder || topBorder) {
-                deltaY *= -1;
-            }
-
         }
     }));
 
@@ -99,8 +116,15 @@ public class GameController implements Initializable
     };
 
     private void incrementTime() {
-        clock.time = clock.time.plusSeconds(1);
-        timerLabel.setText(clock.time.format(clock.dtf));
+        if(GameIsRunning)
+        {
+            clock.time = clock.time.plusSeconds(1);
+            timerLabel.setText(clock.time.format(clock.dtf));
+        }
+        else
+        {
+          clockTimeline.stop();
+        }
     }
 
     @FXML
@@ -134,6 +158,11 @@ public class GameController implements Initializable
                     paddle.setX(PADDLE_XPOSITION);
                 }
                 break;
+            case ENTER:
+                GameIsRunning = true;
+                ball.setLayoutX(100);
+                ball.setLayoutY(200);
+                startClock();
             default:
                 break;
         }

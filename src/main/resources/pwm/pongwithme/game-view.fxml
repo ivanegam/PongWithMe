@@ -11,11 +11,11 @@
 <?import javafx.scene.text.Font?>
 <AnchorPane fx:id="scene" onKeyPressed="#handleOnKeyPressed" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pwm.pongwithme.GameController">
     <children>
-        <HBox alignment="CENTER" spacing="40.0">
+        <HBox alignment="TOP_RIGHT" spacing="20.0">
             <children>
                 <Label fx:id="timerLabel" text="00:00:00" textFill="BLACK">
                     <font>
-                        <Font size="61.0" />
+                        <Font size="30.0" />
                     </font>
                 </Label>
             </children>
