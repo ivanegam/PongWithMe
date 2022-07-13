@@ -23,8 +23,8 @@ In the first sprint, we
 So far, we have not deviated from our project plan. However, we are re-considering some of the patterns proposed in project 5. We are having trouble trying to figure out how to handle paddle and ball collision, but this will likely be resolved before project 7. We decided to implement a MVC pattern for the Game, Menu, and Leaderboard since that is a common pattern for modern JavaFX development, particularly when using FXML files. 
 
 #### Pattern use<br/>
-The following patterns are present: singleton for the game timer and the MVC pattern for the overall game design. The MVC pattern was the natural
-go-to pattern for a game. The singleton pattern was helpful in enforcing a single instance of the game timer. 
+The following patterns are present: singleton for the game timer and the MVC pattern for the Game and Menu. The MVC pattern was the natural
+go-to pattern for this application. The singleton pattern was helpful in enforcing a single instance of the game timer.
 
 ### Class diagram<br/>
 #### Legend<br/>
@@ -36,4 +36,4 @@ go-to pattern for a game. The singleton pattern was helpful in enforcing a singl
 ![Class diagram](CSCI5448_Proj6_ClassDiagram.drawio.svg)
 
 ### Plan for next iteration<br/>
-For the final deliverable, we plan to have the collision detection implemented and real game scores reflected in the leaderboard.
+For the final deliverable, we plan to have the collision detection implemented and real game scores reflected in the leaderboard. A stretch goal would include functionality for a custom player name.
