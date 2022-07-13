@@ -83,22 +83,30 @@ public class GameController implements Initializable
         System.out.println("Pressed key text: " + event.getText());
         System.out.println("Pressed key code: " + event.getCode());
 
-        //Bounds bounds = scene.getBoundsInLocal();
-
+        Bounds bounds = scene.getBoundsInLocal();
+        //600 is max size of window
+        boolean rightBorder = paddle.getX() >= (450);
+        boolean leftBorder = paddle.getX() <= (bounds.getMinX());
 
 
         switch (event.getCode()) {
             case LEFT:
 
-                PADDLE_XPOSITION = paddle.getTranslateX() - 50;
+                if(!leftBorder)
+                {
+                    PADDLE_XPOSITION -= 50;
 
-                paddle.setTranslateX(PADDLE_XPOSITION);
+                    paddle.setX(PADDLE_XPOSITION);
+                }
 
                 break;
             case RIGHT:
-                PADDLE_XPOSITION = paddle.getTranslateX() + 50;
+                if(!rightBorder)
+                {
+                    PADDLE_XPOSITION += 50;
 
-                paddle.setTranslateX(paddle.getTranslateX() + 50);
+                    paddle.setX(PADDLE_XPOSITION);
+                }
                 break;
             default:
                 break;
