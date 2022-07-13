@@ -36,6 +36,6 @@ go-to pattern for this application. The singleton pattern was helpful in enforci
 ![Class diagram](CSCI5448_Proj6_ClassDiagram.drawio.svg)
 
 ### Plan for next iteration<br/>
-For the final deliverable, we plan to have the collision detection implemented and real game scores reflected in the leaderboard. We want to allow for an increasing game difficulty. We would like to make the overall UI more aesthetically pleasing.
+For the final deliverable, we plan to have the collision detection between the paddle and the ball implemented and real game scores reflected in the leaderboard. The game should be able to store each score in a new line delimited text file, and the leaderboard will grab those scores from that text file. We also want to allow for an increasing game difficulty so the game becomes more challenging as time goes on. After achieving these items, our game should be completete per our intention from Project 5. From there, we can work on styling the application and any stretch goals that we have.
 
-As a stretch goal, we would like to make the game work despite the window size. Another stretch goal would include the functionality for a custom player name.
+So far we have a couple of stretch goals: The first stretch goal is that we would like to make the game work despite the window size. The second stretch goal would be to include the functionality for a custom player name.
