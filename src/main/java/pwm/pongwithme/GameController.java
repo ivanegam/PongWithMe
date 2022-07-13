@@ -42,10 +42,10 @@ public class GameController implements Initializable
     @FXML
     Rectangle paddle;
 
-    private int PADDLE_XPOSITION = 10;
-    private int PADDLE_YPOSITION = 380;
-    private int PADDLE_WIDTH = 150;
-    private int PADDLE_HEIGHT = 20;
+    private double PADDLE_XPOSITION = 10;
+    private double PADDLE_YPOSITION = 380;
+    private double PADDLE_WIDTH = 150;
+    private double PADDLE_HEIGHT = 20;
 
 
 
@@ -74,9 +74,6 @@ public class GameController implements Initializable
                 deltaY *= -1;
             }
 
-            paddle = new Rectangle(PADDLE_XPOSITION,PADDLE_YPOSITION,PADDLE_WIDTH,PADDLE_HEIGHT);
-
-            scene.getChildren().add(paddle);
         }
     }));
 
@@ -85,29 +82,23 @@ public class GameController implements Initializable
     {
         System.out.println("Pressed key text: " + event.getText());
         System.out.println("Pressed key code: " + event.getCode());
-        System.out.println(ball.getRadius());
+
+        //Bounds bounds = scene.getBoundsInLocal();
+
+
 
         switch (event.getCode()) {
             case LEFT:
-                PADDLE_XPOSITION -= 1;
 
-                System.out.println("I pressed LEFT!");
-                paddle.setX(PADDLE_XPOSITION);
+                PADDLE_XPOSITION = paddle.getTranslateX() - 50;
 
-                PADDLE_WIDTH = 150;
-                paddle.setWidth(PADDLE_WIDTH);
+                paddle.setTranslateX(PADDLE_XPOSITION);
+
                 break;
             case RIGHT:
-                PADDLE_XPOSITION += 1;
-                PADDLE_WIDTH = 150;
-                System.out.println("I pressed RIGHT!");
+                PADDLE_XPOSITION = paddle.getTranslateX() + 50;
 
-                //paddle.setX(PADDLE_XPOSITION);
-                //paddle.se(PADDLE_XPOSITION);
-
-                paddle = new Rectangle(PADDLE_XPOSITION,PADDLE_YPOSITION,PADDLE_WIDTH,PADDLE_HEIGHT);
-
-                //paddle.setWidth(PADDLE_WIDTH);
+                paddle.setTranslateX(paddle.getTranslateX() + 50);
                 break;
             default:
                 break;
@@ -119,6 +110,10 @@ public class GameController implements Initializable
     public void initialize(URL url, ResourceBundle resourceBundle) {
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
+
+        paddle = new Rectangle(PADDLE_XPOSITION,PADDLE_YPOSITION,PADDLE_WIDTH,PADDLE_HEIGHT);
+
+        scene.getChildren().add(paddle);
 
 
 
