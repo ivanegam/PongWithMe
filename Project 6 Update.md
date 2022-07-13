@@ -20,7 +20,7 @@ In the first sprint, we
 * added a top 5 leaderboard (Ivane)
 
 #### Changes or issues encountered<br/>
-So far, we have not deviated from our project plan. However, we are re-considering some of the patterns proposed in project 5.
+So far, we have not deviated from our project plan. However, we are re-considering some of the patterns proposed in project 5. We are having trouble trying to figure out how to handle paddle and ball collision, but this will likely be resolved before project 7. We decided to implement a MVC pattern for the Game, Menu, and Leaderboard since that is a common pattern for modern JavaFX development, particularly when using FXML files. 
 
 #### Pattern use<br/>
 The following patterns are present: singleton for the game timer and the MVC pattern for the overall game design. The MVC pattern was the natural
