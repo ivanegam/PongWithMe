@@ -35,6 +35,13 @@ import java.util.ResourceBundle;
 
 public class GameController implements Initializable
 {
+    /*
+    I referenced a couple of Github repositories and youtube videos to build the Game. My code looks very different but these resources were helpful to me:
+     1. https://github.com/AbdelrahmanBayoumi/StopwatchFX
+     2. https://github.com/Gaspared/pong
+     3. https://www.youtube.com/watch?v=HsQSqFuSTGE
+     4. https://www.youtube.com/watch?v=caD6IZszqEk
+     */
 
     @FXML
     private AnchorPane scene;
