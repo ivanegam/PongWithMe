@@ -39,8 +39,11 @@ public class GameController implements Initializable
     I referenced a couple of Github repositories and youtube videos to build the Game. My code looks very different but these resources were helpful to me:
      1. https://github.com/AbdelrahmanBayoumi/StopwatchFX
      2. https://github.com/Gaspared/pong
-     3. https://www.youtube.com/watch?v=HsQSqFuSTGE
-     4. https://www.youtube.com/watch?v=caD6IZszqEk
+     3.https://gist.github.com/Da9el00/8141d962ae4d6a3670963181cb0f7c4e -- Ball Movement
+     4. https://www.youtube.com/watch?v=HsQSqFuSTGE -- Pong Mechanics
+     5. https://www.youtube.com/watch?v=caD6IZszqEk -- Stopwatch
+     6. https://www.youtube.com/watch?v=x6NFmzQHvMU&list=LL&index=4&t=176s -- Ball Movement
+
      */
 
     @FXML
