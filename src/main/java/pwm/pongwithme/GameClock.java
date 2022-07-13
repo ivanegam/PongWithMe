@@ -17,13 +17,8 @@ public class GameClock extends Thread {
 
     private static GameClock myInstance;
 
-
-    Timeline timeline;
     LocalTime time = LocalTime.parse("00:00:00");
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
-
-    @FXML
-    private Label timerLabel;
 
     private GameClock()
     {
@@ -39,11 +34,9 @@ public class GameClock extends Thread {
 
     }
 
-    public void getTime() {
-
+    public LocalTime getTime() {
+        return time;
     }
-
-
 
     public static GameClock getInstance(){
         if(myInstance == null){
