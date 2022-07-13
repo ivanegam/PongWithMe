@@ -46,31 +46,31 @@ public class Leaderboard  extends Application {
         Score.setPadding(new Insets(25, 25, 25, 25));
 
         // player1 name
-        Label player1 = new Label("James");
+        Label player1 = new Label("Gold");
         player1.setAlignment(Pos.TOP_LEFT);
         player1.setPadding(new Insets(5, 5, 5, 5));
         player1.setStyle("-fx-font: 16 arial;");
 
         // player2 name
-        Label player2 = new Label("Mary");
+        Label player2 = new Label("Silver");
         player2.setAlignment(Pos.TOP_LEFT);
         player2.setPadding(new Insets(5, 5, 5, 5));
         player2.setStyle("-fx-font: 16 arial;");
 
         // player3 name
-        Label player3 = new Label("Robert");
+        Label player3 = new Label("Bronze");
         player3.setAlignment(Pos.TOP_LEFT);
         player3.setPadding(new Insets(5, 5, 5, 5));
         player3.setStyle("-fx-font: 16 arial;");
 
         // player4 name
-        Label player4 = new Label("Patricia");
+        Label player4 = new Label("Runner-up");
         player4.setAlignment(Pos.TOP_LEFT);
         player4.setPadding(new Insets(5, 5, 5, 5));
         player4.setStyle("-fx-font: 16 arial;");
 
         // player5 name
-        Label player5 = new Label("Michael");
+        Label player5 = new Label("Consolation prize");
         player5.setAlignment(Pos.TOP_LEFT);
         player5.setPadding(new Insets(5, 5, 5, 5));
         player5.setStyle("-fx-font: 16 arial;");
