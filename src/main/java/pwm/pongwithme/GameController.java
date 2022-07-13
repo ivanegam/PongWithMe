@@ -3,6 +3,8 @@ package pwm.pongwithme;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.FXCollections;
@@ -16,6 +18,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -41,6 +44,12 @@ public class GameController implements Initializable
 
     @FXML
     Rectangle paddle;
+
+    @FXML
+    private Label timerLabel;
+
+    GameClock clock = GameClock.getInstance();
+
 
     private double PADDLE_XPOSITION = 10;
     private double PADDLE_YPOSITION = 380;
@@ -76,6 +85,19 @@ public class GameController implements Initializable
 
         }
     }));
+
+    Timeline clockTimeline = new Timeline(new KeyFrame(Duration.millis(1000), ae -> incrementTime()));
+
+    public void startClock()
+    {
+        clockTimeline.setCycleCount(Animation.INDEFINITE);
+        clockTimeline.play();
+    };
+
+    private void incrementTime() {
+        clock.time = clock.time.plusSeconds(1);
+        timerLabel.setText(clock.time.format(clock.dtf));
+    }
 
     @FXML
     private void handleOnKeyPressed(KeyEvent event)
@@ -123,6 +145,7 @@ public class GameController implements Initializable
 
         scene.getChildren().add(paddle);
 
+        startClock();
 
 
     }

@@ -1,19 +1,57 @@
 package pwm.pongwithme;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.util.Duration;
+
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
-public class GameClock {
+public class GameClock extends Thread {
 
-    public Date startTime;
-    public Date endTime;
-    public int seconds;
-    public static GameClock myInstance = new GameClock();
 
-    private GameClock(){}
+    private static GameClock myInstance;
 
-    public void startClock(){};
 
-    public void stopClock(){};
+    Timeline timeline;
+    LocalTime time = LocalTime.parse("00:00:00");
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
 
-    public static GameClock getInstance(){return myInstance;};
+    @FXML
+    private Label timerLabel;
+
+    private GameClock()
+    {
+
+    }
+
+    public void stopClock()
+    {
+
+    };
+
+    public void setTime(long time) {
+
+    }
+
+    public void getTime() {
+
+    }
+
+
+
+    public static GameClock getInstance(){
+        if(myInstance == null){
+            myInstance = new GameClock();
+        }
+        return myInstance;
+
+    };
+
 
 }
