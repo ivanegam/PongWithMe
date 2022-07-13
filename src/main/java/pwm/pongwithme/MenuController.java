@@ -3,6 +3,7 @@ package pwm.pongwithme;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 public class MenuController {
     @FXML
@@ -13,6 +14,12 @@ public class MenuController {
 
     @FXML
     protected void onPlayButtonClick() {
+        Game game = new Game();
+        try {
+            game.start(new Stage());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
