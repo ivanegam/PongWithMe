@@ -13,7 +13,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class Game extends Application{
-
+    //test
     public boolean isRunning;
     public int currentScore;
     public GameClock clock;
