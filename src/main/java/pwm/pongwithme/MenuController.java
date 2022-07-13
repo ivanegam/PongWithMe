@@ -6,6 +6,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class MenuController {
+
+    Leaderboard leaderboard = new Leaderboard();
+
     @FXML
     private Label welcomeText;
 
@@ -24,6 +27,7 @@ public class MenuController {
 
     @FXML
     protected void onLeaderboardButtonClick() {
+        leaderboard.start(new Stage());
     }
 
     @FXML
