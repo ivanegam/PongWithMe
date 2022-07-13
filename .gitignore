@@ -37,6 +37,12 @@ target/
 *.iml
 *.ipr
 
+
+.idea/misc.xml
+PongWithMe.iml
+
+
+
 ### Eclipse ###
 .apt_generated
 .classpath

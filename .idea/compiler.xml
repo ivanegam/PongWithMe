@@ -9,7 +9,7 @@
         <module name="PongWithMe" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="8">
+    <bytecodeTargetLevel>
       <module name="PongWithMe" target="18" />
     </bytecodeTargetLevel>
   </component>
