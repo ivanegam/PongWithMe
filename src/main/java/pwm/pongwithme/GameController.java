@@ -39,11 +39,15 @@ public class GameController implements Initializable
     @FXML
     private AnchorPane scene;
 
-    @FXML
-    private Circle ball;
+
+    private Ball ballObject = new Ball();
+    private Paddle paddleObject = new Paddle();
 
     @FXML
-    Rectangle paddle;
+    private Circle ball = ballObject.ballObject;
+
+    @FXML
+    private Rectangle paddle = paddleObject.paddleObject;
 
     @FXML
     private Label timerLabel;

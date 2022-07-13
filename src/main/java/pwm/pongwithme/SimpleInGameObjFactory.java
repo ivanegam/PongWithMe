@@ -6,8 +6,8 @@ public class SimpleInGameObjFactory {
 
         InGameObject igo = null;
 
-        if (type == "player") {
-            igo = new Player();
+        if (type == "paddle") {
+            igo = new Paddle();
         } else if (type == "ball") {
             igo = new Ball();
         }

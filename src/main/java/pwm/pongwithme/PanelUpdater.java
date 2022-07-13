@@ -3,7 +3,8 @@ package pwm.pongwithme;
 public class PanelUpdater {
 
     public Ball ball;
-    public Player player;
+
+    public Paddle paddle;
 
     public void updatePanel(){}
 
