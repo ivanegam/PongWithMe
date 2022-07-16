@@ -75,8 +75,6 @@ public class GameController implements Initializable
     private boolean GameIsRunning = false;
 
 
-
-
     //1 Frame evey 10 millis, which means 100 FPS
     Timeline timeline = new Timeline(new KeyFrame(Duration.millis(10), new EventHandler<>() {
 
@@ -94,6 +92,7 @@ public class GameController implements Initializable
                 boolean leftBorder = ball.getLayoutX() <= (bounds.getMinX() + ball.getRadius());
                 boolean bottomBorder = ball.getLayoutY() >= (bounds.getMaxY() - ball.getRadius());
                 boolean topBorder = ball.getLayoutY() <= (bounds.getMinY() + ball.getRadius());
+                boolean bottomBorder_WithPaddle = ball.getLayoutY()  >= ((bounds.getMaxY() - (ball.getRadius() + PADDLE_HEIGHT - 4)));
 
                 if (rightBorder || leftBorder) {
                     deltaX *= -1;
@@ -102,14 +101,13 @@ public class GameController implements Initializable
                         deltaY *= -1;
                     }
                 }
-                else if (topBorder) {
+                else if (topBorder)
+                {
                     deltaY *= -1;
-                } else if (ball.getLayoutX() - PADDLE_XPOSITION <= 0 && ball.getLayoutY() - PADDLE_YPOSITION <= 0) {
-                    if(bottomBorder)
-                    {
-                        deltaX *= -1;
-                        deltaY *= -1;
-                    }
+                }
+                else if (bottomBorder_WithPaddle && (ball.getLayoutX() - paddle.getLayoutX() < PADDLE_WIDTH && ball.getLayoutX() - paddle.getLayoutX() > -10))
+                {
+                    deltaY *= -1;
                 } else if (bottomBorder) {
                     GameIsRunning = false;
                 }
@@ -145,27 +143,27 @@ public class GameController implements Initializable
 
         Bounds bounds = scene.getBoundsInLocal();
         //600 is max size of window
-        boolean rightBorder = paddle.getX() >= (450);
-        boolean leftBorder = paddle.getX() <= (bounds.getMinX());
+        boolean rightBorder = PADDLE_XPOSITION >= (450);
+        boolean leftBorder = PADDLE_XPOSITION <= (bounds.getMinX());
 
 
         switch (event.getCode()) {
             case LEFT:
 
-                if(!leftBorder)
+                if(!leftBorder && GameIsRunning)
                 {
                     PADDLE_XPOSITION -= 50;
 
-                    paddle.setX(PADDLE_XPOSITION);
+                    paddle.relocate(PADDLE_XPOSITION, PADDLE_YPOSITION);
                 }
 
                 break;
             case RIGHT:
-                if(!rightBorder)
+                if(!rightBorder && GameIsRunning)
                 {
                     PADDLE_XPOSITION += 50;
 
-                    paddle.setX(PADDLE_XPOSITION);
+                    paddle.relocate(PADDLE_XPOSITION, PADDLE_YPOSITION);
                 }
                 break;
             case ENTER:
