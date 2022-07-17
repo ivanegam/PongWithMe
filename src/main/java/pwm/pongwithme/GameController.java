@@ -53,11 +53,14 @@ public class GameController implements Initializable
 
     GameClock clock = GameClock.getInstance();
 
-
-    private double PADDLE_XPOSITION = 10;
-    private double PADDLE_YPOSITION = 380;
     private double PADDLE_WIDTH = 150;
     private double PADDLE_HEIGHT = 20;
+
+    private double PADDLE_XPOSITION;
+    private double PADDLE_YPOSITION;
+
+    private double BALL_STARTING_XPOSITION;
+    private double BALL_STARTING_YPOSITION;
 
     private double BALL_SPEED = 1;
 
@@ -103,10 +106,14 @@ public class GameController implements Initializable
                     deltaY *= -1;
                 } else if (isBallOnBottomBorder) {
                     GameIsRunning = false;
-                    gameMessage.setText("Game over! Press Enter to player again.");
+                    gameMessage.setText("Game over! Press Enter to play again.");
                     gameMessage.setVisible(true);
 
                     clock.resetClockAndSaveScore();
+
+                    //Hide Paddle and Ball
+                    ball.setVisible(false);
+                    paddle.setVisible(false);
 
 
                 }
@@ -180,25 +187,38 @@ public class GameController implements Initializable
                 {
                     GameIsRunning = true;
 
+                    setBallAndPaddlePositions();
+
                     //Reset ball position
-                    //ball.setLayoutX(100);
-                    //ball.setLayoutY(200);
-                    ball.relocate(100, 200);
+                    ball.relocate(BALL_STARTING_XPOSITION, BALL_STARTING_YPOSITION);
 
                     //Reset Paddle position
-                    PADDLE_XPOSITION = 10;
-                    PADDLE_YPOSITION = bounds.getMaxY() - PADDLE_HEIGHT;
                     paddle.relocate(PADDLE_XPOSITION, PADDLE_YPOSITION);
 
                     startClock();
 
                     //Hiding the starting game message
                     gameMessage.setVisible(false);
+
+                    //Show Paddle and Ball
+                    ball.setVisible(true);
+                    paddle.setVisible(true);
                 }
             default:
                 break;
         }
 
+    }
+
+    //Adjust Ball and Paddle positions based on the window size.
+    private void setBallAndPaddlePositions()
+    {
+        setBorders();
+        PADDLE_XPOSITION = bounds.getMaxX()/2 - 100;
+        PADDLE_YPOSITION = bounds.getMaxY() - PADDLE_HEIGHT;
+
+        BALL_STARTING_XPOSITION = bounds.getMaxX()/2 - 100;
+        BALL_STARTING_YPOSITION = bounds.getMinY() + 200;
     }
 
     @Override
@@ -211,15 +231,20 @@ public class GameController implements Initializable
         AnchorPane.setBottomAnchor(gameMessage, 200.0);
         gameMessage.setAlignment(Pos.CENTER);
 
+        //Main game timeline is always running, but nothing is done unless GameIsRunning property is true
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
 
-        paddle = new Rectangle(PADDLE_XPOSITION,PADDLE_YPOSITION,PADDLE_WIDTH,PADDLE_HEIGHT);
+        setBallAndPaddlePositions();
 
+        //Add paddle to the window
+        paddle = new Rectangle(PADDLE_XPOSITION,PADDLE_YPOSITION,PADDLE_WIDTH,PADDLE_HEIGHT);
         scene.getChildren().add(paddle);
 
         startClock();
 
-
+        //Hide Ball and paddle until user starts game
+        ball.setVisible(false);
+        paddle.setVisible(false);
     }
 }
