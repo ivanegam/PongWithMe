@@ -13,13 +13,18 @@
     <children>
         <HBox alignment="TOP_RIGHT" spacing="20.0">
             <children>
-                <Label fx:id="timerLabel" text="00:00:00" textFill="BLACK">
+                <Label fx:id="timerLabel" text="00:00:00.00" textFill="BLACK">
                     <font>
                         <Font size="30.0" />
                     </font>
                 </Label>
             </children>
         </HBox>
+        <Label fx:id="gameMessage" text="Press Enter to Start!" textFill="BLACK" >
+            <font>
+                <Font size="30.0" />
+            </font>
+        </Label>
         <Circle fx:id="ball" fill="BLACK" layoutX="100.0" layoutY="200.0" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
         <Rectangle fx:id="paddle" fill="BLACK" layoutX="50.0" layoutY="100.0"  stroke="BLACK" strokeType="INSIDE" />
     </children>

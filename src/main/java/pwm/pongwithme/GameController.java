@@ -14,6 +14,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Bounds;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -30,7 +31,13 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalAmount;
 import java.util.ResourceBundle;
 
 public class GameController implements Initializable
@@ -62,6 +69,10 @@ public class GameController implements Initializable
     @FXML
     private Label timerLabel;
 
+    @FXML
+    private Label gameMessage;
+
+
     GameClock clock = GameClock.getInstance();
 
 
@@ -73,7 +84,6 @@ public class GameController implements Initializable
     private double BALL_SPEED = 1;
 
     private boolean GameIsRunning = false;
-
 
     //1 Frame evey 10 millis, which means 100 FPS
     Timeline timeline = new Timeline(new KeyFrame(Duration.millis(10), new EventHandler<>() {
@@ -110,14 +120,20 @@ public class GameController implements Initializable
                     deltaY *= -1;
                 } else if (bottomBorder) {
                     GameIsRunning = false;
+                    gameMessage.setText("Game over! Press Enter to player again.");
+                    gameMessage.setVisible(true);
+
+                    clock.resetClockAndSaveScore();
+
+
                 }
             }
         }
     }));
 
-    Timeline clockTimeline = new Timeline(new KeyFrame(Duration.millis(1000), ae -> incrementTime()));
+    Timeline clockTimeline = new Timeline(new KeyFrame(Duration.millis(1), ae -> incrementTime()));
 
-    public void startClock()
+    private void startClock()
     {
         clockTimeline.setCycleCount(Animation.INDEFINITE);
         clockTimeline.play();
@@ -126,8 +142,8 @@ public class GameController implements Initializable
     private void incrementTime() {
         if(GameIsRunning)
         {
-            clock.time = clock.time.plusSeconds(1);
-            timerLabel.setText(clock.time.format(clock.dtf));
+            clock.incrementClock(1000000);
+            timerLabel.setText(clock.getFormattedTime());
         }
         else
         {
@@ -167,10 +183,14 @@ public class GameController implements Initializable
                 }
                 break;
             case ENTER:
+
                 GameIsRunning = true;
                 ball.setLayoutX(100);
                 ball.setLayoutY(200);
                 startClock();
+
+                //Hiding the starting game message
+                gameMessage.setVisible(false);
             default:
                 break;
         }
@@ -179,6 +199,14 @@ public class GameController implements Initializable
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        //Positioning the game message label to top center of the screen
+        gameMessage.setMaxWidth(Double.MAX_VALUE);
+        AnchorPane.setLeftAnchor(gameMessage, 0.0);
+        AnchorPane.setRightAnchor(gameMessage, 0.0);
+        AnchorPane.setTopAnchor(gameMessage, 0.0);
+        AnchorPane.setBottomAnchor(gameMessage, 200.0);
+        gameMessage.setAlignment(Pos.CENTER);
+
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
 
