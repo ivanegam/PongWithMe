@@ -3,41 +3,19 @@ package pwm.pongwithme;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Bounds;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Box;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
-import javafx.stage.Stage;
 import javafx.util.Duration;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.net.URL;
-import java.time.LocalTime;
-import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalAmount;
 import java.util.ResourceBundle;
 
 public class GameController implements Initializable
@@ -85,6 +63,16 @@ public class GameController implements Initializable
 
     private boolean GameIsRunning = false;
 
+    private Bounds bounds;
+    private boolean isBallOnRightBorder;
+    private boolean isBallOnLeftBorder;
+    private boolean isBallOnBottomBorder;
+    private boolean isBallOnTopBorder;
+    private boolean isBallTouchingPaddle_Y;
+    private boolean isBallTouchingPaddle_X;
+    private boolean isPaddleTouchingRightBorder;
+    private boolean isPaddleTouchingLeftBorder;
+
     //1 Frame evey 10 millis, which means 100 FPS
     Timeline timeline = new Timeline(new KeyFrame(Duration.millis(10), new EventHandler<>() {
 
@@ -97,28 +85,23 @@ public class GameController implements Initializable
                 ball.setLayoutX(ball.getLayoutX() + deltaX);
                 ball.setLayoutY(ball.getLayoutY() + deltaY);
 
-                Bounds bounds = scene.getBoundsInLocal();
-                boolean rightBorder = ball.getLayoutX() >= (bounds.getMaxX() - ball.getRadius());
-                boolean leftBorder = ball.getLayoutX() <= (bounds.getMinX() + ball.getRadius());
-                boolean bottomBorder = ball.getLayoutY() >= (bounds.getMaxY() - ball.getRadius());
-                boolean topBorder = ball.getLayoutY() <= (bounds.getMinY() + ball.getRadius());
-                boolean bottomBorder_WithPaddle = ball.getLayoutY()  >= ((bounds.getMaxY() - (ball.getRadius() + PADDLE_HEIGHT - 4)));
+                setBorders();
 
-                if (rightBorder || leftBorder) {
+                if (isBallOnRightBorder || isBallOnLeftBorder) {
                     deltaX *= -1;
-                    if(topBorder)
+                    if(isBallOnTopBorder)
                     {
                         deltaY *= -1;
                     }
                 }
-                else if (topBorder)
+                else if (isBallOnTopBorder)
                 {
                     deltaY *= -1;
                 }
-                else if (bottomBorder_WithPaddle && (ball.getLayoutX() - paddle.getLayoutX() < PADDLE_WIDTH && ball.getLayoutX() - paddle.getLayoutX() > -10))
+                else if (isBallTouchingPaddle_Y && isBallTouchingPaddle_X)
                 {
                     deltaY *= -1;
-                } else if (bottomBorder) {
+                } else if (isBallOnBottomBorder) {
                     GameIsRunning = false;
                     gameMessage.setText("Game over! Press Enter to player again.");
                     gameMessage.setVisible(true);
@@ -132,6 +115,19 @@ public class GameController implements Initializable
     }));
 
     Timeline clockTimeline = new Timeline(new KeyFrame(Duration.millis(1), ae -> incrementTime()));
+
+    private void setBorders()
+    {
+        bounds = scene.getBoundsInLocal();
+        isBallOnRightBorder = ball.getLayoutX() >= (bounds.getMaxX() - ball.getRadius());
+        isBallOnLeftBorder = ball.getLayoutX() <= (bounds.getMinX() + ball.getRadius());
+        isBallOnBottomBorder = ball.getLayoutY() >= (bounds.getMaxY() - ball.getRadius());
+        isBallOnTopBorder = ball.getLayoutY() <= (bounds.getMinY() + ball.getRadius());
+        isBallTouchingPaddle_Y = ball.getLayoutY()  >= ((bounds.getMaxY() - (ball.getRadius() + PADDLE_HEIGHT - 4)));
+        isBallTouchingPaddle_X = (ball.getLayoutX() - paddle.getLayoutX() < PADDLE_WIDTH && ball.getLayoutX() - paddle.getLayoutX() > -10);
+        isPaddleTouchingRightBorder = PADDLE_XPOSITION >= bounds.getMaxX() - PADDLE_WIDTH;
+        isPaddleTouchingLeftBorder = PADDLE_XPOSITION <= bounds.getMinX();
+    }
 
     private void startClock()
     {
@@ -157,16 +153,13 @@ public class GameController implements Initializable
         System.out.println("Pressed key text: " + event.getText());
         System.out.println("Pressed key code: " + event.getCode());
 
-        Bounds bounds = scene.getBoundsInLocal();
-        //600 is max size of window
-        boolean rightBorder = PADDLE_XPOSITION >= (450);
-        boolean leftBorder = PADDLE_XPOSITION <= (bounds.getMinX());
-
+        //Set the border values of the window
+        setBorders();
 
         switch (event.getCode()) {
             case LEFT:
 
-                if(!leftBorder && GameIsRunning)
+                if(!isPaddleTouchingLeftBorder && GameIsRunning)
                 {
                     PADDLE_XPOSITION -= 50;
 
@@ -175,7 +168,7 @@ public class GameController implements Initializable
 
                 break;
             case RIGHT:
-                if(!rightBorder && GameIsRunning)
+                if(!isPaddleTouchingRightBorder && GameIsRunning)
                 {
                     PADDLE_XPOSITION += 50;
 
@@ -183,14 +176,25 @@ public class GameController implements Initializable
                 }
                 break;
             case ENTER:
+                if(!GameIsRunning)
+                {
+                    GameIsRunning = true;
 
-                GameIsRunning = true;
-                ball.setLayoutX(100);
-                ball.setLayoutY(200);
-                startClock();
+                    //Reset ball position
+                    //ball.setLayoutX(100);
+                    //ball.setLayoutY(200);
+                    ball.relocate(100, 200);
 
-                //Hiding the starting game message
-                gameMessage.setVisible(false);
+                    //Reset Paddle position
+                    PADDLE_XPOSITION = 10;
+                    PADDLE_YPOSITION = bounds.getMaxY() - PADDLE_HEIGHT;
+                    paddle.relocate(PADDLE_XPOSITION, PADDLE_YPOSITION);
+
+                    startClock();
+
+                    //Hiding the starting game message
+                    gameMessage.setVisible(false);
+                }
             default:
                 break;
         }
