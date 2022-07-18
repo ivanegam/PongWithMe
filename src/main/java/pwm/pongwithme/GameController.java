@@ -16,7 +16,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -170,6 +169,7 @@ public class GameController implements Initializable
     private void incrementTime() {
         if(GameIsRunning)
         {
+            //I have to pass nanos. 1000000 = 1 millisecond
             clock.incrementClock(1000000);
             timerLabel.setText(clock.getFormattedTime());
         }
