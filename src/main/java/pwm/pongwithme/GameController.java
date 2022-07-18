@@ -63,7 +63,7 @@ public class GameController implements Initializable
 
     GameClock clock = GameClock.getInstance();
 
-    private double PADDLE_WIDTH = 150;
+    private double PADDLE_WIDTH = 200;
     private double PADDLE_HEIGHT = 20;
 
     private double PADDLE_XPOSITION;
@@ -86,7 +86,8 @@ public class GameController implements Initializable
     private boolean isBallTouchingPaddle_X;
     private boolean isPaddleTouchingRightBorder;
     private boolean isPaddleTouchingLeftBorder;
-    private boolean paddleHeadingSouth = true;
+    private boolean ballHeadingSouth = true;
+    private boolean ballHeadingEast = true;
 
     //1 Frame evey 10 millis, which means 100 FPS
     Timeline timeline = new Timeline(new KeyFrame(Duration.millis(10), new EventHandler<>() {
@@ -99,23 +100,35 @@ public class GameController implements Initializable
 
                 setBorders();
 
-                if (isBallOnRightBorder || isBallOnLeftBorder) {
+                if(isBallOnLeftBorder && !ballHeadingEast)
+                {
                     BALL_SPEED_X *= -1;
+                    ballHeadingEast = true;
                     if(isBallOnTopBorder)
                     {
                         BALL_SPEED_Y *= -1;
-                        paddleHeadingSouth = true;
+                        ballHeadingSouth = true;
+                    }
+                }
+                else if (isBallOnRightBorder && ballHeadingEast)
+                {
+                    BALL_SPEED_X *= -1;
+                    ballHeadingEast = false;
+                    if(isBallOnTopBorder)
+                    {
+                        BALL_SPEED_Y *= -1;
+                        ballHeadingSouth = true;
                     }
                 }
                 else if (isBallOnTopBorder)
                 {
                     BALL_SPEED_Y *= -1;
-                    paddleHeadingSouth = true;
+                    ballHeadingSouth = true;
                 }
-                else if (isBallTouchingPaddle_Y && isBallTouchingPaddle_X && paddleHeadingSouth)
+                else if (isBallTouchingPaddle_Y && isBallTouchingPaddle_X && ballHeadingSouth)
                 {
                     BALL_SPEED_Y *= -1;
-                    paddleHeadingSouth = false;
+                    ballHeadingSouth = false;
                 } else if (isBallOnBottomBorder)
                 {
                     endGame();
@@ -138,8 +151,8 @@ public class GameController implements Initializable
         isBallOnTopBorder = ball.getLayoutY() <= (bounds.getMinY() + ball.getRadius());
         isBallTouchingPaddle_Y = ball.getLayoutY()  >= ((bounds.getMaxY() - (ball.getRadius() + PADDLE_HEIGHT - 4)));
         isBallTouchingPaddle_X = (ball.getLayoutX() - PADDLE_XPOSITION < PADDLE_WIDTH && ball.getLayoutX() - PADDLE_XPOSITION > -10);
-        isPaddleTouchingRightBorder = PADDLE_XPOSITION >= bounds.getMaxX() - PADDLE_WIDTH;
-        isPaddleTouchingLeftBorder = PADDLE_XPOSITION <= bounds.getMinX();
+        isPaddleTouchingRightBorder = PADDLE_XPOSITION >= bounds.getMaxX() - (PADDLE_WIDTH+25);
+        isPaddleTouchingLeftBorder = PADDLE_XPOSITION <= (bounds.getMinX() + 25);
     }
 
     private void startClock()
@@ -194,7 +207,7 @@ public class GameController implements Initializable
 
                 if(!isPaddleTouchingLeftBorder && GameIsRunning)
                 {
-                    PADDLE_XPOSITION -= 100;
+                    PADDLE_XPOSITION -= 75;
 
                     paddle.relocate(PADDLE_XPOSITION, PADDLE_YPOSITION);
                 }
@@ -203,7 +216,7 @@ public class GameController implements Initializable
             case RIGHT:
                 if(!isPaddleTouchingRightBorder && GameIsRunning)
                 {
-                    PADDLE_XPOSITION += 100;
+                    PADDLE_XPOSITION += 75;
 
                     paddle.relocate(PADDLE_XPOSITION, PADDLE_YPOSITION);
                 }
