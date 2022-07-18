@@ -1,9 +1,14 @@
 package pwm.pongwithme;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -22,10 +27,23 @@ public class LeaderboardController implements Initializable {
     @FXML
     private AnchorPane leaderboardScene;
 
+    ////https://gist.github.com/sharifulislam52/d17b4e1654a8214046d409b0a7d63c3b - Used this for implementing TableView for each score
+
+
+    // Initialized all elements of GUI
+    @FXML
+    private TableView<Score> leaderboardTableView;
+    @FXML
+    private TableColumn<Score, String> playerScore;
+    @FXML
+    private TableColumn<Score, String> scorePlace;
+    @FXML
+    private TableColumn<Score, String> playerName;
+
     //Adapted from: https://stackoverflow.com/q/47425336
-    static ArrayList<ArrayList<String>> scores = new ArrayList();
+    static ArrayList<Score> scores = new ArrayList();
     static ArrayList<Float> iScores = new ArrayList();
-    static ArrayList<ArrayList<String>> top5Scores = new ArrayList();
+    static ArrayList<Score> top5Scores = new ArrayList();
 
     /**
      * Converts a duration string to duration in seconds, millisecond precision
@@ -48,23 +66,19 @@ public class LeaderboardController implements Initializable {
     public static void getScores() {
 
         try {
+            int lineNumber = 0;
             for(String ln : Files.readAllLines(Paths.get("scores.txt"))){
-
-                String score = ln.split(";")[0];
-                String player = "Player";
-                ArrayList<String> combo = new ArrayList();
-
                 try {
-                    player = ln.split(";")[1];
+                    lineNumber ++;
+
+                    Score score = new Score(String.valueOf(lineNumber),ln.split(";")[1], ln.split(";")[0]);
+
+                    scores.add(score);
+                    iScores.add(durToFlt(score.getPlayerScore()));
                 } catch (Exception e){
                     System.out.println("Player name missing!");
                 }
 
-                combo.add(player);
-                combo.add(score);
-
-                scores.add(combo);
-                iScores.add(durToFlt(score));
 
             }
         } catch (IOException e) {
@@ -78,17 +92,14 @@ public class LeaderboardController implements Initializable {
      */
     public static void getAndRemoveHighestScore()
     {
-        ArrayList<String> combo = new ArrayList();
-
         for(int i = 0; i < iScores.size(); i++){
             if(iScores.get(i) == Collections.max(iScores)){
 
                 System.out.println(iScores.get(i));
 
-                combo.add(scores.get(i).get(0));
-                combo.add(scores.get(i).get(1));
+                Score currentScore = new Score(String.valueOf(i + 1), scores.get(i).getPlayerName(), scores.get(i).getPlayerScore());
 
-                top5Scores.add(combo);
+                top5Scores.add(currentScore);
 
                 scores.remove(i);
                 iScores.remove(i);
@@ -103,14 +114,31 @@ public class LeaderboardController implements Initializable {
      *
      * @return ArrayList of top5 players
      */
-    public static ArrayList<ArrayList<String>> getTop5Scores(){
+    public static ArrayList<Score> getTop5Scores(){
         getScores();
 
         for(int i = 0; i < 5; i++){
             getAndRemoveHighestScore();
         }
 
+        //Setting the score place for each player
+        for(int i = 0; i < 5; i++){
+            top5Scores.get(i).setScorePlace(String.valueOf(i + 1));
+        }
+
         return top5Scores;
+    }
+
+    //https://gist.github.com/sharifulislam52/d17b4e1654a8214046d409b0a7d63c3b
+    public ObservableList<Score> list;
+
+    private void positionLeaderBoard() {
+        //Positioning the game message label to top center of the screen
+        leaderboardTableView.setMaxWidth(Double.MAX_VALUE);
+        AnchorPane.setLeftAnchor(leaderboardTableView, 0.0);
+        AnchorPane.setRightAnchor(leaderboardTableView, 0.0);
+        AnchorPane.setTopAnchor(leaderboardTableView, 0.0);
+        AnchorPane.setBottomAnchor(leaderboardTableView, 300.00);
     }
 
     @Override
@@ -119,93 +147,18 @@ public class LeaderboardController implements Initializable {
 
         scores = getTop5Scores();
 
-        //// vertical box
-        HBox hBox = new HBox();
-        hBox.setPrefSize(1100, 700);
-        hBox.setAlignment(Pos.CENTER);
+       list = FXCollections.observableArrayList(
+            scores
+            );
 
-        // vertical box for the players
-        VBox PlayerName = new VBox();
-        PlayerName.setAlignment(Pos.CENTER_LEFT);
-        PlayerName.setPadding(new Insets(25, 25, 25, 25));
+        //https://gist.github.com/sharifulislam52/d17b4e1654a8214046d409b0a7d63c3b
+        scorePlace.setCellValueFactory(new PropertyValueFactory<Score, String>("scorePlace"));
+        playerName.setCellValueFactory(new PropertyValueFactory<Score, String>("playerName"));
+        playerScore.setCellValueFactory(new PropertyValueFactory<Score, String>("playerScore"));
+        leaderboardTableView.setItems(list);
 
-        // vertical box for the scores
-        VBox Score = new VBox();
-        Score.setAlignment(Pos.CENTER_RIGHT);
-        Score.setPadding(new Insets(25, 25, 25, 25));
-
-        // player1 name
-        Label player1 = new Label(scores.get(0).get(0));
-        player1.setAlignment(Pos.TOP_LEFT);
-        player1.setPadding(new Insets(5, 5, 5, 5));
-        player1.setStyle("-fx-font: 16 arial;");
-
-        // player2 name
-        Label player2 = new Label(scores.get(1).get(0));
-        player2.setAlignment(Pos.TOP_LEFT);
-        player2.setPadding(new Insets(5, 5, 5, 5));
-        player2.setStyle("-fx-font: 16 arial;");
-
-        // player3 name
-        Label player3 = new Label(scores.get(2).get(0));
-        player3.setAlignment(Pos.TOP_LEFT);
-        player3.setPadding(new Insets(5, 5, 5, 5));
-        player3.setStyle("-fx-font: 16 arial;");
-
-        // player4 name
-        Label player4 = new Label(scores.get(3).get(0));
-        player4.setAlignment(Pos.TOP_LEFT);
-        player4.setPadding(new Insets(5, 5, 5, 5));
-        player4.setStyle("-fx-font: 16 arial;");
-
-        // player5 name
-        Label player5 = new Label(scores.get(4).get(0));
-        player5.setAlignment(Pos.TOP_LEFT);
-        player5.setPadding(new Insets(5, 5, 5, 5));
-        player5.setStyle("-fx-font: 16 arial;");
-
-        // player1 score
-        Label text1 = new Label();
-        text1.setAlignment(Pos.CENTER_LEFT);
-        text1.setText(scores.get(0).get(1));
-        text1.setPadding(new Insets(5, 5, 5, 5));
-        text1.setStyle("-fx-font: 16 arial;");
-
-        // player2 score
-        Label text2 = new Label();
-        text2.setAlignment(Pos.CENTER_RIGHT);
-        text2.setText(scores.get(1).get(1));
-        text2.setPadding(new Insets(5, 5, 5, 5));
-        text2.setStyle("-fx-font: 16 arial;");
-
-        // player3 score
-        Label text3 = new Label();
-        text3.setAlignment(Pos.CENTER_RIGHT);
-        text3.setText(scores.get(2).get(1));
-        text3.setPadding(new Insets(5, 5, 5, 5));
-        text3.setStyle("-fx-font: 16 arial;");
-
-        // player4 score
-        Label text4 = new Label();
-        text4.setAlignment(Pos.CENTER_RIGHT);
-        text4.setText(scores.get(3).get(1));
-        text4.setPadding(new Insets(5, 5, 5, 5));
-        text4.setStyle("-fx-font: 16 arial;");
-
-        // player5 score
-        Label text5 = new Label();
-        text5.setAlignment(Pos.CENTER_RIGHT);
-        text5.setText(scores.get(4).get(1));
-        text5.setPadding(new Insets(5, 5, 5, 5));
-        text5.setStyle("-fx-font: 16 arial;");
-
-        PlayerName.getChildren().addAll(player1, player2, player3, player4, player5);
-        Score.getChildren().addAll(text1, text2, text3, text4, text5);
-
-        hBox.getChildren().addAll(PlayerName, Score);
-
-        leaderboardScene.getChildren().add(hBox);
-
+        leaderboardTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        leaderboardTableView.setId("my-table");
     }
 
 }

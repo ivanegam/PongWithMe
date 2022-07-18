@@ -1,13 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.AnchorPane?>
-
-<?import javafx.scene.control.Button?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
 
 <AnchorPane fx:id="leaderboardScene" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pwm.pongwithme.LeaderboardController">
 <children>
+    <Label fx:id="leaderBoardTitle" layoutX="300.0" layoutY="150.0"  text="Leaderboard - Top 5 Scores" textFill="BLACK" >
+        <font>
+            <Font size="30.0" />
+        </font>
+    </Label>
+<!--    https://gist.github.com/sharifulislam52/d17b4e1654a8214046d409b0a7d63c3b -->
+    <TableView fx:id="leaderboardTableView" layoutX="300.0" layoutY="200.0" prefHeight="300.0" prefWidth="500.0">
+        <columns>
+            <TableColumn fx:id="scorePlace" text="#" />
+            <TableColumn fx:id="playerName" text="Player Name" />
+            <TableColumn fx:id="playerScore" text="Score" />
+        </columns>
+    </TableView>
 </children>
 </AnchorPane>
