@@ -9,8 +9,8 @@
 
 <AnchorPane fx:id="menuController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pwm.pongwithme.MenuController">
 <children>
-    <Button text="Play" onAction="#onPlayButtonClick" layoutX = "250" layoutY = "150.0"/>
-    <Button text="View leaderboard" onAction="#onLeaderboardButtonClick" layoutX = "250" layoutY = "190.0"/>
-    <Button text="Quit" onAction="#onQuitButtonClick" layoutX = "250" layoutY = "230.0"/>
+    <Button text="Play" onAction="#onPlayButtonClick" layoutX = "500" layoutY = "270.0"/>
+    <Button text="View leaderboard" onAction="#onLeaderboardButtonClick" layoutX = "500" layoutY = "310.0"/>
+    <Button text="Quit" onAction="#onQuitButtonClick" layoutX = "500" layoutY = "350.0"/>
 </children>
 </AnchorPane>
