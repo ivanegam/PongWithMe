@@ -36,11 +36,11 @@ public class GameClock extends Thread {
         return time.format(dtf);
     }
 
-    public void resetClockAndSaveScore() {
+    public void resetClockAndSaveScore(String playerName) {
         String filePath = "scores.txt";
 
         try {
-            String score = getTime().toString() + ";\n";
+            String score = getTime().toString() + ";" + playerName + "\n";
 
             File myObj = new File(filePath);
             myObj.createNewFile();

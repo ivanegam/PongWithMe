@@ -9,6 +9,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
 <AnchorPane fx:id="scene" onKeyPressed="#handleOnKeyPressed" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pwm.pongwithme.GameController">
     <children>
         <HBox alignment="TOP_RIGHT" spacing="20.0">
@@ -20,11 +22,17 @@
                 </Label>
             </children>
         </HBox>
-        <Label fx:id="gameMessage" text="Press Enter to Start! Feel free to resize the window before starting." textFill="BLACK" >
+        <TextField fx:id="playerName" text="">
+            <font>
+                <Font size="30.0" />
+            </font>
+        </TextField>
+        <Label fx:id="gameMessage" text="Press enter to start game! Feel free to resize the window before starting." textFill="BLACK" >
             <font>
                 <Font size="30.0" />
             </font>
         </Label>
+        <Button fx:id="savePlayerNameButton" text="Save" prefWidth="100" prefHeight="50" onAction="#onSavePlayerNameButtonClick" layoutX = "500" layoutY = "450.0"/>
         <Circle fx:id="ball" fill="BLACK" layoutX="100.0" layoutY="200.0" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
         <Rectangle fx:id="paddle" fill="BLACK" layoutX="50.0" layoutY="100.0"  stroke="BLACK" strokeType="INSIDE" />
     </children>
