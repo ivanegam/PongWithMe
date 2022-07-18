@@ -130,16 +130,7 @@ public class LeaderboardController implements Initializable {
     }
 
     //https://gist.github.com/sharifulislam52/d17b4e1654a8214046d409b0a7d63c3b
-    public ObservableList<Score> list;
-
-    private void positionLeaderBoard() {
-        //Positioning the game message label to top center of the screen
-        leaderboardTableView.setMaxWidth(Double.MAX_VALUE);
-        AnchorPane.setLeftAnchor(leaderboardTableView, 0.0);
-        AnchorPane.setRightAnchor(leaderboardTableView, 0.0);
-        AnchorPane.setTopAnchor(leaderboardTableView, 0.0);
-        AnchorPane.setBottomAnchor(leaderboardTableView, 300.00);
-    }
+    public ObservableList<Score> leaderBoardList;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
@@ -147,7 +138,7 @@ public class LeaderboardController implements Initializable {
 
         scores = getTop5Scores();
 
-       list = FXCollections.observableArrayList(
+        leaderBoardList = FXCollections.observableArrayList(
             scores
             );
 
@@ -155,7 +146,7 @@ public class LeaderboardController implements Initializable {
         scorePlace.setCellValueFactory(new PropertyValueFactory<Score, String>("scorePlace"));
         playerName.setCellValueFactory(new PropertyValueFactory<Score, String>("playerName"));
         playerScore.setCellValueFactory(new PropertyValueFactory<Score, String>("playerScore"));
-        leaderboardTableView.setItems(list);
+        leaderboardTableView.setItems(leaderBoardList);
 
         leaderboardTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         leaderboardTableView.setId("my-table");
