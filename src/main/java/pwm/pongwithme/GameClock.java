@@ -40,7 +40,7 @@ public class GameClock extends Thread {
         String filePath = "scores.txt";
 
         try {
-            String score = getTime().toString() + "\n";
+            String score = getTime().toString() + ";\n";
 
             File myObj = new File(filePath);
             myObj.createNewFile();

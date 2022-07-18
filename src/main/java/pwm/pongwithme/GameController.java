@@ -62,7 +62,7 @@ public class GameController implements Initializable
     private double BALL_STARTING_XPOSITION;
     private double BALL_STARTING_YPOSITION;
 
-    private double BALL_SPEED = 1;
+    private double BALL_SPEED = 2;
 
     private boolean GameIsRunning = false;
 

@@ -32,7 +32,7 @@ public class Leaderboard  extends Application {
 
         //// vertical box
         HBox hBox = new HBox();
-        hBox.setPrefSize(600, 400);
+        hBox.setPrefSize(1100, 700);
         hBox.setAlignment(Pos.CENTER);
 
         // vertical box for the players
