@@ -204,9 +204,6 @@ public class GameController implements Initializable
 
         switch (event.getCode()) {
             case LEFT:
-
-
-
                 if(!isPaddleTouchingLeftBorder && GameIsRunning)
                 {
                     LeftCommand leftCommand = new LeftCommand(this);

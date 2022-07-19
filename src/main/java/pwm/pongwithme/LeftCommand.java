@@ -1,5 +1,5 @@
 package pwm.pongwithme;
-
+//Command pattern
 public class LeftCommand implements Command {
 
     GameController gameController;
