@@ -136,6 +136,11 @@ public class LeaderboardController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
 
+        //Clearing Lists
+        scores = new ArrayList();
+        iScores = new ArrayList();
+        top5Scores = new ArrayList();
+
         scores = getTop5Scores();
 
         leaderBoardList = FXCollections.observableArrayList(
