@@ -45,7 +45,7 @@ public class GameController implements Initializable
     private Circle ball = ballObject.ballObject;
 
     @FXML
-    private Rectangle paddle = paddleObject.paddleObject;
+    public Rectangle paddle = paddleObject.paddleObject;
 
     @FXML
     private Label timerLabel;
@@ -65,8 +65,8 @@ public class GameController implements Initializable
     private double PADDLE_WIDTH = 200;
     private double PADDLE_HEIGHT = 20;
 
-    private double PADDLE_XPOSITION;
-    private double PADDLE_YPOSITION;
+    public double PADDLE_XPOSITION;
+    public double PADDLE_YPOSITION;
 
     private double BALL_STARTING_XPOSITION;
     private double BALL_STARTING_YPOSITION;
@@ -205,20 +205,20 @@ public class GameController implements Initializable
         switch (event.getCode()) {
             case LEFT:
 
+
+
                 if(!isPaddleTouchingLeftBorder && GameIsRunning)
                 {
-                    PADDLE_XPOSITION -= 75;
-
-                    paddle.relocate(PADDLE_XPOSITION, PADDLE_YPOSITION);
+                    LeftCommand leftCommand = new LeftCommand(this);
+                    leftCommand.execute();
                 }
 
                 break;
             case RIGHT:
                 if(!isPaddleTouchingRightBorder && GameIsRunning)
                 {
-                    PADDLE_XPOSITION += 75;
-
-                    paddle.relocate(PADDLE_XPOSITION, PADDLE_YPOSITION);
+                    RightCommand rightCommand = new RightCommand(this);
+                    rightCommand.execute();
                 }
                 break;
             case ENTER:
