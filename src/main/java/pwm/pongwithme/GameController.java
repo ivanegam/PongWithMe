@@ -37,9 +37,10 @@ public class GameController implements Initializable
     @FXML
     private AnchorPane scene;
 
+    private SimpleInGameObjectFactory inGameObjectFactory = new SimpleInGameObjectFactory();
 
-    private Ball ballObject = new Ball();
-    private Paddle paddleObject = new Paddle();
+    private Ball ballObject = (Ball) inGameObjectFactory.createInGameObject("ball");
+    private Paddle paddleObject = (Paddle) inGameObjectFactory.createInGameObject("paddle");
 
     @FXML
     private Circle ball = ballObject.ballObject;
