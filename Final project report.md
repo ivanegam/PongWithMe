@@ -34,6 +34,7 @@ Stretch goals implemented were:
 &nbsp;&nbsp;&nbsp; # &nbsp;&nbsp;&nbsp;&nbsp; protected access modifier<br/>
 &nbsp;&nbsp;&nbsp; ~ &nbsp;&nbsp;&nbsp;&nbsp; package-private access modifier<br/>
 &nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; private access modifier<br/>
+&nbsp;&nbsp;&nbsp; ![#FF0000](https://via.placeholder.com/15/f03c15/FF0000.png) &nbsp;&nbsp; design patterns<br/>
 
 ![Final class diagram](CSCI5448_Proj7_ClassDiagram.drawio.svg)
 
