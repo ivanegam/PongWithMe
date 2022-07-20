@@ -23,9 +23,9 @@ public class Leaderboard  extends Application {
         //Calling requestFocus allows the keyevents to be read when application is ran
         root.getRoot().requestFocus();
 
+        //Adding CSS file to this scene
         //https://www.section.io/engineering-education/add-an-external-css-file-to-a-javafx-application/#:~:text=Adding%20it%20via%20the%20SceneBuilder%20or%20Hardcoding%20it&text=In%20the%20SceneBuilder%20view%2C%20click,CSS%20file%2C%20and%20that's%20it.
         root.getStylesheets().add(Main.class.getResource("leaderboardStyle.css").toExternalForm());
-
 
         primaryStage.setTitle("Leaderboard");
         primaryStage.setScene(root);

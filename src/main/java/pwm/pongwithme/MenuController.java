@@ -5,8 +5,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
 public class MenuController {
 
     Leaderboard leaderboard = new Leaderboard();
@@ -15,7 +13,7 @@ public class MenuController {
     private Label welcomeText;
 
     @FXML
-    private AnchorPane menuController;
+    private AnchorPane menuScene;
 
     @FXML
     protected void onPlayButtonClick() {

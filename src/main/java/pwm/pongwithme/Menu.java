@@ -5,17 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Menu extends Application {
-
-    public String currentState;
-
-    public void initiateAction(){};
-
-    public void startGame(){};
-
-    public void showLeaderBoard(){};
-
-    public void Quit(){};
+public class Menu extends Application
+{
 
     @Override
     public void start(Stage primaryStage) throws Exception{

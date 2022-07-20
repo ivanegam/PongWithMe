@@ -34,13 +34,14 @@ public class GameController implements Initializable
 
      */
 
-    @FXML
-    private AnchorPane scene;
-
+    //Simple Factory Pattern - We used this pattern to create the ball/Paddle objects
     private SimpleInGameObjectFactory inGameObjectFactory = new SimpleInGameObjectFactory();
-
     private Ball ballObject = (Ball) inGameObjectFactory.createInGameObject("ball");
     private Paddle paddleObject = (Paddle) inGameObjectFactory.createInGameObject("paddle");
+
+    //Below are all of our FXML fields that are tied to the UI
+    @FXML
+    private AnchorPane scene;
 
     @FXML
     private Circle ball = ballObject.ballObject;
@@ -60,23 +61,24 @@ public class GameController implements Initializable
     @FXML
     private Button savePlayerNameButton;
 
-
+    //Singleton Pattern - using this pattern to generate our CLock object. We only need 1 instance.
     GameClock clock = GameClock.getInstance();
 
+    //Global paddle variables
     private double PADDLE_WIDTH = 200;
     private double PADDLE_HEIGHT = 20;
-
     public double PADDLE_XPOSITION;
     public double PADDLE_YPOSITION;
 
+    //Global ball variables
     private double BALL_STARTING_XPOSITION;
     private double BALL_STARTING_YPOSITION;
-
     private double BALL_SPEED_X = 2;
     private double BALL_SPEED_Y = 2;
 
     private boolean GameIsRunning = false;
 
+    //Variables to determine if the ball or paddle are colliding with anything
     private Bounds bounds;
     private boolean isBallOnRightBorder;
     private boolean isBallOnLeftBorder;
@@ -89,17 +91,20 @@ public class GameController implements Initializable
     private boolean ballHeadingSouth = true;
     private boolean ballHeadingEast = true;
 
-    //1 Frame evey 10 millis, which means 100 FPS
+    //Our main game timeline. Frame evey 10 millis, which means 100 FPS
     Timeline timeline = new Timeline(new KeyFrame(Duration.millis(10), new EventHandler<>() {
 
         @Override
         public void handle(ActionEvent actionEvent) {
             if (GameIsRunning) {
+                //Update ball speed and direction
                 ball.setLayoutX(ball.getLayoutX() + BALL_SPEED_X);
                 ball.setLayoutY(ball.getLayoutY() + BALL_SPEED_Y);
 
+                //Check if there are any collisions
                 setBorders();
 
+                //Handle change of directions depending on what the ball is touching
                 if(isBallOnLeftBorder && !ballHeadingEast)
                 {
                     BALL_SPEED_X *= -1;
@@ -137,11 +142,13 @@ public class GameController implements Initializable
         }
     }));
 
+    //Every millisecond, the clock needs to update its time.
     Timeline clockTimeline = new Timeline(new KeyFrame(Duration.millis(1), ae -> incrementTime()));
 
-    //Increase ball speed every 5 seconds
+    //Increase ball speed by 20% every 5 seconds
     Timeline ballSpeedTimeline = new Timeline(new KeyFrame(Duration.seconds(5), actionEvent -> increaseBallSpeed()));
 
+    //Set borders for determining if any in game objects are touching any borders or each other.
     private void setBorders()
     {
         bounds = scene.getBoundsInLocal();
@@ -172,10 +179,12 @@ public class GameController implements Initializable
         {
             //I have to pass nanos. 1000000 = 1 millisecond
             clock.incrementClock(1000000);
+            //Update text on the UI
             timerLabel.setText(clock.getFormattedTime());
         }
         else
         {
+        //If game isn't running, then stop the clock
           clockTimeline.stop();
         }
     }
@@ -189,11 +198,13 @@ public class GameController implements Initializable
             BALL_SPEED_Y *= 1.2;
         }
         else {
+            //Reset the ball speed
             BALL_SPEED_X = 2;
             BALL_SPEED_Y = 2;
         }
     }
 
+    //This method handles all key presses. Right now the paddle is controlled through arrow keys.
     @FXML
     private void handleOnKeyPressed(KeyEvent event)
     {
@@ -207,6 +218,7 @@ public class GameController implements Initializable
             case LEFT:
                 if(!isPaddleTouchingLeftBorder && GameIsRunning)
                 {
+                    //Command pattern - Moving paddle Left
                     LeftCommand leftCommand = new LeftCommand(this);
                     leftCommand.execute();
                 }
@@ -215,18 +227,20 @@ public class GameController implements Initializable
             case RIGHT:
                 if(!isPaddleTouchingRightBorder && GameIsRunning)
                 {
+                    //Command pattern - Moving paddle Right
                     RightCommand rightCommand = new RightCommand(this);
                     rightCommand.execute();
                 }
                 break;
             case ENTER:
+                //Validation to make sure that the player provides a name
                 if(playerName.getText() ==  null || playerName.getText() == "")
                 {
                     gameMessage.setText("Please provide a name.");
                 }
                 else
                 {
-
+                    //If player provided a name, then start the game.
                     startGame();
 
                 }
@@ -236,6 +250,7 @@ public class GameController implements Initializable
 
     }
 
+    //Reset all the variables and end the game.
     private void endGame()
     {
         GameIsRunning = false;
@@ -301,6 +316,7 @@ public class GameController implements Initializable
         BALL_STARTING_YPOSITION = bounds.getMinY() + 200;
     }
 
+    //Message informing the player how to start the game.
     private void showGameStartMessage()
     {
         //Positioning the game message label to top center of the screen
@@ -328,6 +344,7 @@ public class GameController implements Initializable
     {
         savePlayerNameButton.setVisible(false);
         playerName.setVisible(false);
+        //Hide button / Prompt and show the game start message.
         showGameStartMessage();
         //Setting this property is import so that the scene can then capture keyevents
         scene.requestFocus();

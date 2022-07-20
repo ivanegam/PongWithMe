@@ -3,16 +3,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
@@ -27,7 +21,7 @@ public class LeaderboardController implements Initializable {
     @FXML
     private AnchorPane leaderboardScene;
 
-    ////https://gist.github.com/sharifulislam52/d17b4e1654a8214046d409b0a7d63c3b - Used this for implementing TableView for each score
+    //https://gist.github.com/sharifulislam52/d17b4e1654a8214046d409b0a7d63c3b - Used this for implementing TableView for each score
 
 
     // Initialized all elements of GUI
@@ -148,6 +142,7 @@ public class LeaderboardController implements Initializable {
             );
 
         //https://gist.github.com/sharifulislam52/d17b4e1654a8214046d409b0a7d63c3b
+        //We use the PropertyValueFactory object, which I believe follows the factory pattern
         scorePlace.setCellValueFactory(new PropertyValueFactory<Score, String>("scorePlace"));
         playerName.setCellValueFactory(new PropertyValueFactory<Score, String>("playerName"));
         playerScore.setCellValueFactory(new PropertyValueFactory<Score, String>("playerScore"));

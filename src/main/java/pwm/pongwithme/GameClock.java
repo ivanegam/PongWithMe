@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+//Singleton Pattern
 public class GameClock extends Thread {
 
 
@@ -31,11 +32,13 @@ public class GameClock extends Thread {
 
     }
 
+    //Use to format the time as 00:00:00.00
     public String getFormattedTime()
     {
         return time.format(dtf);
     }
 
+    //At the end of each game, the clock object will save it's score which is the time.
     public void resetClockAndSaveScore(String playerName) {
         String filePath = "scores.txt";
 
@@ -64,6 +67,7 @@ public class GameClock extends Thread {
         return time;
     }
 
+    //Singleton Pattern
     public static GameClock getInstance(){
         if(myInstance == null){
             myInstance = new GameClock();

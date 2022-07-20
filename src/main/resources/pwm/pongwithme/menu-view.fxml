@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.AnchorPane?>
-
 <?import javafx.scene.control.Button?>
 
-<AnchorPane fx:id="menuController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pwm.pongwithme.MenuController">
+<AnchorPane fx:id="menuScene" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pwm.pongwithme.MenuController">
 <children>
     <Button text="Play" onAction="#onPlayButtonClick" layoutX = "500" layoutY = "270.0"/>
     <Button text="View leaderboard" onAction="#onLeaderboardButtonClick" layoutX = "500" layoutY = "310.0"/>
