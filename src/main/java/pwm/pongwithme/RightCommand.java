@@ -1,6 +1,6 @@
 package pwm.pongwithme;
 //Command pattern
-public class RightCommand {
+public class RightCommand implements Command {
 
     GameController gameController;
 
