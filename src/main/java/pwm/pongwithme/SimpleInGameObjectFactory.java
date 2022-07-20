@@ -1,5 +1,5 @@
 package pwm.pongwithme;
-
+//Simple Factory pattern
 public class SimpleInGameObjectFactory
 {
     public InGameObject createInGameObject(String type)
