@@ -16,8 +16,8 @@ Primary features implemented were:
 * Main menu
 * Top5 leaderboard
 * Gameplay
-  * Movable paddle
-  * Moving ball
+  * Paddle motion
+  * Ball motion
   * Game timer
   * Collisiion detection
   * Increasing game difficulty
@@ -44,11 +44,26 @@ Stretch goals implemented were:
 ##### Key changes in system since original design<br/>
 _Support the diagrams with a written paragraph identifying key changes in your system since your design/work was submitted in Projects 5 and 6_
 
-Since the original design and analysis work, we found the observer and decorator patterns unnecessary and thus did not implement them. We also found a different need for the simple factory pattern than originally planned.
+Since the original design and analysis work, we found the observer and decorator patterns unnecessary and thus did not implement them. Instead, we decided for model-view–controller and command.
 
 #### 4. Third-party code _vs_ original code statement
-A clear statement of what code in the project is original vs. what code you used from other sources – whether tools, frameworks, tutorials, 
-or examples – this section must be present even if you used NO third-party code - include the sources (URLs) for your third-party elements
+_A clear statement of what code in the project is original vs. what code you used from other sources – whether tools, frameworks, tutorials, 
+or examples – this section must be present even if you used NO third-party code - include the sources (URLs) for your third-party elements_
+
+The code in the project is original, except for the following sources, which were utilized and adapted to our needs:
+1. Add CSS files to scene: [Add an external CSS file to a JavaFX Application | Engineering Education (EngEd) Program | Section](https://www.section.io/engineering-education/add-an-external-css-file-to-a-javafx-application)
+1. Ball motion: [JavaFX and Scene Builder - bouncing ball - YouTube](https://youtu.be/x6NFmzQHvMU?t=176)
+1. Ball motion: [JavaFX with Scne Builder - Bouncing Ball](https://gist.github.com/Da9el00/8141d962ae4d6a3670963181cb0f7c4e)
+1. Button styling: [intellij idea - Styling button in javaFX using CSS - Stack Overflow](https://stackoverflow.com/q/25043990)
+1. Game controller: [AbdelrahmanBayoumi/StopwatchFX: Stopwatch desktop application made with JavaFX](https://github.com/AbdelrahmanBayoumi/StopwatchFX)
+1. Game controller: [Gaspared/pong: simple pong game in javaFX](https://github.com/Gaspared/pong)
+1. JavaFX library: [JavaFX](https://openjfx.io)
+1. Keyboard listener: [java - setOnKeyPressed event not working properly - Stack Overflow](https://stackoverflow.com/q/32802664)
+1. Leaderboard: [java - Javafx GUI scoreboard - Stack Overflow](https://stackoverflow.com/q/47425336)
+1. Leaderboard: [javafx : TableView Example](https://gist.github.com/sharifulislam52/d17b4e1654a8214046d409b0a7d63c3b)
+1. Pong mechanics: [PONG Game, Java (fx) Programming Tutorial - YouTube](https://youtu.be/HsQSqFuSTGE)
+1. Project set-up: [Create a new JavaFX project | IntelliJ IDEA](https://www.jetbrains.com/help/idea/javafx.html)
+1. Stopwatch: [Stopwatch With Source Code | JavaFX - YouTube](https://youtu.be/caD6IZszqEk)
 
 #### 5. Statement on the OOAD process for your overall semester project
 _List three key design process elements or issues (positive or negative) that your team experienced in your analysis and design of the OO semester project_
