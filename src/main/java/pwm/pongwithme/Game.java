@@ -11,7 +11,7 @@ public class Game extends Application{
     public void start(Stage primaryStage) throws Exception{
         // Load the FXML data into loader
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("game-view.fxml"));
+        loader.setLocation(Game.class.getResource("game-view.fxml"));
 
         // Create a new scene from that FXML data
         Scene root = new Scene(loader.load());

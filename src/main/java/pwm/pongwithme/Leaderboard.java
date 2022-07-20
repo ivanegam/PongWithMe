@@ -15,7 +15,7 @@ public class Leaderboard  extends Application {
     public void start(Stage primaryStage) throws Exception {
         // Load the FXML data into loader
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("leaderboard-view.fxml"));
+        loader.setLocation(Leaderboard.class.getResource("leaderboard-view.fxml"));
 
         // Create a new scene from that FXML data
         Scene root = new Scene(loader.load());
@@ -25,7 +25,7 @@ public class Leaderboard  extends Application {
 
         //Adding CSS file to this scene
         //https://www.section.io/engineering-education/add-an-external-css-file-to-a-javafx-application/#:~:text=Adding%20it%20via%20the%20SceneBuilder%20or%20Hardcoding%20it&text=In%20the%20SceneBuilder%20view%2C%20click,CSS%20file%2C%20and%20that's%20it.
-        root.getStylesheets().add(Main.class.getResource("leaderboardStyle.css").toExternalForm());
+        root.getStylesheets().add(Leaderboard.class.getResource("leaderboardStyle.css").toExternalForm());
 
         primaryStage.setTitle("Leaderboard");
         primaryStage.setScene(root);

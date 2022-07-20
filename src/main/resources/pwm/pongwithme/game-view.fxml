@@ -15,7 +15,7 @@
             <children>
                 <Label fx:id="timerLabel" text="00:00:00.00" textFill="BLACK">
                     <font>
-                        <Font size="30.0" />
+                        <Font size="50.0" />
                     </font>
                 </Label>
             </children>
