@@ -8,8 +8,6 @@
 Pong With Me by Tyler Walker and Ivane Gamkrelidze<br/>
 
 #### 2. Final state of system statement<br/>
-_A paragraph on the final state of your system: what features were implemented, what features were not and why, what changed from Project 5 and 6._
-
 Every feature outlined in Project 5 was implemented. Every stretch goal outlined in Project 6 was met. We deviated from the patterns proposed in Project 5 as we found more appropriate patterns.
 
 Primary features implemented were:
@@ -42,14 +40,9 @@ Stretch goals implemented were:
 ![Original class diagram](CSCI5448_Proj5_UML_class_diag_pattern_use.drawio.svg)
 
 ##### Key changes in system since original design<br/>
-_Support the diagrams with a written paragraph identifying key changes in your system since your design/work was submitted in Projects 5 and 6_
-
 Since the original design and analysis work, we found the observer and decorator patterns unnecessary and thus did not implement them. Instead, we decided for model-view–controller and command.
 
 #### 4. Third-party code _vs_ original code statement
-_A clear statement of what code in the project is original vs. what code you used from other sources – whether tools, frameworks, tutorials, 
-or examples – this section must be present even if you used NO third-party code - include the sources (URLs) for your third-party elements_
-
 The code in the project is original, except for the following sources, which were utilized and adapted to our needs:
 1. Add CSS files to scene: [Add an external CSS file to a JavaFX Application | Engineering Education (EngEd) Program | Section](https://www.section.io/engineering-education/add-an-external-css-file-to-a-javafx-application)
 1. Ball motion: [JavaFX and Scene Builder - bouncing ball - YouTube](https://youtu.be/x6NFmzQHvMU?t=176)
@@ -66,8 +59,6 @@ The code in the project is original, except for the following sources, which wer
 1. Stopwatch: [Stopwatch With Source Code | JavaFX - YouTube](https://youtu.be/caD6IZszqEk)
 
 #### 5. Statement on the OOAD process for your overall semester project
-_List three key design process elements or issues (positive or negative) that your team experienced in your analysis and design of the OO semester project_
-
 1. Implementing patterns pre-determined during the design stage proved challenging. While some were obvious (MVC), in other cases we had to learn as we go which patterns were appropriate as we developed the program.
 1. We found the UML class diagram to be a helpful starting point. Briefly, we started the project by setting up the structures identified in the UML class diagram. However, we found this was not the way forward for this project (too many depenedencies for GUI to figure out). So, instead we began with a simple JavaFX `HelloWorld`-type project and built up from that. We still found the majority of the structures identified in the UML class diagram instructive.
 1. JavaFX timelines?
