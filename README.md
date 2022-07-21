@@ -11,7 +11,7 @@ Java version: ```openjdk version "18.0.1.1" 2022-04-22```<br/><br/>
 
 ### Project 7: July 20, 2022 — WORK IN PROGRESS
 #### Final project report:
-![#f03c15](https://via.placeholder.com/15/f03c15/f03c15.png) [`Final project report.pdf`](Final%20project%20report.pdf)<br/>
+[`Final project report.pdf`](Final%20project%20report.pdf)<br/>
 
 #### Demonstration:
 ![#f03c15](https://via.placeholder.com/15/f03c15/f03c15.png) [`DemoVideo`](DemoVideo)<br/><br/><br/>
