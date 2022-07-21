@@ -40,7 +40,7 @@ Stretch goals implemented were:
 ![Original class diagram](CSCI5448_Proj5_UML_class_diag_pattern_use.drawio.svg)
 
 ##### Key changes in system since original design<br/>
-Since the original design and analysis work, we found the observer and decorator patterns unnecessary and thus did not implement them. Instead, we decided for model–view–controller and command.
+Since the original design and analysis work, we found the observer and decorator patterns unnecessary and thus did not implement them. Instead, we decided for model–view–controller and command. We found many modern JavaFX patterns use MVC models where the view was FXML, which is a really nice way to build GUIs. The FXML is essentially markup that was connected to the controller. The command pattern seemed to make more sense for handling the movement of the paddle in the game. Another thing that we didn't realize, was that we would have to handle a lot of the logic in the respective controller classes (LeaderboardController, MenuController, and GameController). This is why the controller objects have a lot more properties and methods. Overall, the UML class diagram of our final product looks much different than our UML diagram from Project 5. 
 
 #### 4. Third-party code _vs_ original code statement
 The code in the project is original, except for the following sources, which were utilized and adapted to our needs:
