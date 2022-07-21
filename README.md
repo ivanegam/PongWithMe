@@ -15,3 +15,6 @@ Java version: ```openjdk version "18.0.1.1" 2022-04-22```<br/><br/>
 
 #### Demonstration:
 ![#f03c15](https://via.placeholder.com/15/f03c15/f03c15.png) [`DemoVideo`](DemoVideo)<br/><br/><br/>
+
+### Instructions:
+Download [`PongWithMe.jar`](https://www.dropbox.com/s/9fcppsd519g6odc/PongWithMe.jar) and issue `java -jar PongWithMe.jar` at command line
