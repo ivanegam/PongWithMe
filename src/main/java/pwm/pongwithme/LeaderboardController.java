@@ -77,7 +77,7 @@ public class LeaderboardController implements Initializable {
 
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            scores = new ArrayList<>();
         }
 
     }
@@ -112,14 +112,15 @@ public class LeaderboardController implements Initializable {
     public static ArrayList<Score> getTop5Scores(){
         getScores();
 
-        if(scores.size() >= 5)
+        int topN = Integer.min(5, scores.size());
+        if(scores.size() >= 1)
         {
-            for(int i = 0; i < 5; i++){
+            for(int i = 0; i < topN; i++){
                 getAndRemoveHighestScore();
             }
 
             //Setting the score place for each player
-            for(int i = 0; i < 5; i++){
+            for(int i = 0; i < topN; i++){
                 top5Scores.get(i).setScorePlace(String.valueOf(i + 1));
             }
         }
@@ -141,7 +142,7 @@ public class LeaderboardController implements Initializable {
 
         scores = getTop5Scores();
 
-        if(scores.size() < 5)
+        if(scores.size() < 1)
         {
             return;
         }

@@ -92,6 +92,9 @@ public class GameController implements Initializable
     private boolean ballHeadingSouth = true;
     private boolean ballHeadingEast = true;
 
+    //Require button click
+    private boolean isGameMessageShowing = false;
+
     //Our main game timeline. Frame evey 10 millis, which means 100 FPS
     Timeline timeline = new Timeline(new KeyFrame(Duration.millis(10), new EventHandler<>() {
 
@@ -239,7 +242,7 @@ public class GameController implements Initializable
                 {
                     gameMessage.setText("Please provide a name.");
                 }
-                else
+                else if(isGameMessageShowing)
                 {
                     //If player provided a name, then start the game.
                     startGame();
@@ -349,11 +352,12 @@ public class GameController implements Initializable
         showGameStartMessage();
         //Setting this property is import so that the scene can then capture keyevents
         scene.requestFocus();
+
+        isGameMessageShowing = true;
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         //Main game timeline is always running, but nothing is done unless GameIsRunning property is true
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
@@ -373,9 +377,9 @@ public class GameController implements Initializable
 
         playerName.setPromptText("Enter your name");
 
-
         //Hide Ball and paddle until user starts game
         ball.setVisible(false);
         paddle.setVisible(false);
+
     }
 }
