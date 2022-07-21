@@ -58,7 +58,7 @@ The code in the project is original, except for the following sources, which wer
 * Project set-up: [Create a new JavaFX project | IntelliJ IDEA](https://www.jetbrains.com/help/idea/javafx.html)
 * Stopwatch: [Stopwatch With Source Code | JavaFX - YouTube](https://youtu.be/caD6IZszqEk)
 
-We used several of these sources as a good starting point to develop our project. Our code significantly deviates from the original sources, which helped us get started.
+We used several of these sources as a good starting point to develop our project. Our code significantly deviates from the original sources, which merely served as guidance.
 
 #### 5. Statement on the OOAD process for your overall semester project
 1. Implementing patterns pre-determined during the design stage proved challenging. While some were obvious (MVC), in other cases we had to learn as we go which patterns were appropriate as we developed the program.
