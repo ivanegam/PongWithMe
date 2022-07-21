@@ -8,7 +8,7 @@
 Pong With Me by Tyler Walker and Ivane Gamkrelidze<br/>
 
 #### 2. Final state of system statement<br/>
-Every feature outlined in Project 5 was implemented. Every stretch goal outlined in Project 6 was met. We deviated from the patterns proposed in Project 5 as we found more appropriate patterns.
+Every feature outlined in Project 5 was implemented. Every stretch goal outlined in Project 6 was met. We deviated from the patterns proposed in Project 5 as we found more appropriate patterns. We believe that we accomplished a good final state of the system, the game seems to work very well. We refactored our code several times, and provided plenty of comments so that the code is easy to read and maintain. 
 
 Primary features implemented were:
 * Main menu
@@ -57,6 +57,8 @@ The code in the project is original, except for the following sources, which wer
 1. Pong mechanics: [PONG Game, Java (fx) Programming Tutorial - YouTube](https://youtu.be/HsQSqFuSTGE)
 1. Project set-up: [Create a new JavaFX project | IntelliJ IDEA](https://www.jetbrains.com/help/idea/javafx.html)
 1. Stopwatch: [Stopwatch With Source Code | JavaFX - YouTube](https://youtu.be/caD6IZszqEk)
+
+We used a lot of these sources as a good starting point to develop our project. Our code now looks very different than a lot of these sources, but it helped us get started. 
 
 #### 5. Statement on the OOAD process for your overall semester project
 1. Implementing patterns pre-determined during the design stage proved challenging. While some were obvious (MVC), in other cases we had to learn as we go which patterns were appropriate as we developed the program.
