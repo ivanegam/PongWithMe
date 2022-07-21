@@ -44,19 +44,19 @@ Since the original design and analysis work, we found the observer and decorator
 
 #### 4. Third-party code _vs_ original code statement
 The code in the project is original, except for the following sources, which were utilized and adapted to our needs:
-1. Add CSS files to scene: [Add an external CSS file to a JavaFX Application | Engineering Education (EngEd) Program | Section](https://www.section.io/engineering-education/add-an-external-css-file-to-a-javafx-application)
-1. Ball motion: [JavaFX and Scene Builder - bouncing ball - YouTube](https://youtu.be/x6NFmzQHvMU?t=176)
-1. Ball motion: [JavaFX with Scne Builder - Bouncing Ball](https://gist.github.com/Da9el00/8141d962ae4d6a3670963181cb0f7c4e)
-1. Button styling: [intellij idea - Styling button in javaFX using CSS - Stack Overflow](https://stackoverflow.com/q/25043990)
-1. Game controller: [AbdelrahmanBayoumi/StopwatchFX: Stopwatch desktop application made with JavaFX](https://github.com/AbdelrahmanBayoumi/StopwatchFX)
-1. Game controller: [Gaspared/pong: simple pong game in javaFX](https://github.com/Gaspared/pong)
-1. JavaFX library: [JavaFX](https://openjfx.io)
-1. Keyboard listener: [java - setOnKeyPressed event not working properly - Stack Overflow](https://stackoverflow.com/q/32802664)
-1. Leaderboard: [java - Javafx GUI scoreboard - Stack Overflow](https://stackoverflow.com/q/47425336)
-1. Leaderboard: [javafx : TableView Example](https://gist.github.com/sharifulislam52/d17b4e1654a8214046d409b0a7d63c3b)
-1. Pong mechanics: [PONG Game, Java (fx) Programming Tutorial - YouTube](https://youtu.be/HsQSqFuSTGE)
-1. Project set-up: [Create a new JavaFX project | IntelliJ IDEA](https://www.jetbrains.com/help/idea/javafx.html)
-1. Stopwatch: [Stopwatch With Source Code | JavaFX - YouTube](https://youtu.be/caD6IZszqEk)
+* Add CSS files to scene: [Add an external CSS file to a JavaFX Application | Engineering Education (EngEd) Program | Section](https://www.section.io/engineering-education/add-an-external-css-file-to-a-javafx-application)
+* Ball motion: [JavaFX and Scene Builder - bouncing ball - YouTube](https://youtu.be/x6NFmzQHvMU?t=176)
+* Ball motion: [JavaFX with Scne Builder - Bouncing Ball](https://gist.github.com/Da9el00/8141d962ae4d6a3670963181cb0f7c4e)
+* Button styling: [intellij idea - Styling button in javaFX using CSS - Stack Overflow](https://stackoverflow.com/q/25043990)
+* Game controller: [AbdelrahmanBayoumi/StopwatchFX: Stopwatch desktop application made with JavaFX](https://github.com/AbdelrahmanBayoumi/StopwatchFX)
+* Game controller: [Gaspared/pong: simple pong game in javaFX](https://github.com/Gaspared/pong)
+* JavaFX library: [JavaFX](https://openjfx.io)
+* Keyboard listener: [java - setOnKeyPressed event not working properly - Stack Overflow](https://stackoverflow.com/q/32802664)
+* Leaderboard: [java - Javafx GUI scoreboard - Stack Overflow](https://stackoverflow.com/q/47425336)
+* Leaderboard: [javafx : TableView Example](https://gist.github.com/sharifulislam52/d17b4e1654a8214046d409b0a7d63c3b)
+* Pong mechanics: [PONG Game, Java (fx) Programming Tutorial - YouTube](https://youtu.be/HsQSqFuSTGE)
+* Project set-up: [Create a new JavaFX project | IntelliJ IDEA](https://www.jetbrains.com/help/idea/javafx.html)
+* Stopwatch: [Stopwatch With Source Code | JavaFX - YouTube](https://youtu.be/caD6IZszqEk)
 
 We used several of these sources as a good starting point to develop our project. Our code significantly deviates from the original sources, which helped us get started.
 
