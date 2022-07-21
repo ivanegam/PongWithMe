@@ -112,13 +112,16 @@ public class LeaderboardController implements Initializable {
     public static ArrayList<Score> getTop5Scores(){
         getScores();
 
-        for(int i = 0; i < 5; i++){
-            getAndRemoveHighestScore();
-        }
+        if(scores.size() >= 5)
+        {
+            for(int i = 0; i < 5; i++){
+                getAndRemoveHighestScore();
+            }
 
-        //Setting the score place for each player
-        for(int i = 0; i < 5; i++){
-            top5Scores.get(i).setScorePlace(String.valueOf(i + 1));
+            //Setting the score place for each player
+            for(int i = 0; i < 5; i++){
+                top5Scores.get(i).setScorePlace(String.valueOf(i + 1));
+            }
         }
 
         return top5Scores;
@@ -137,6 +140,11 @@ public class LeaderboardController implements Initializable {
         top5Scores = new ArrayList();
 
         scores = getTop5Scores();
+
+        if(scores.size() < 5)
+        {
+            return;
+        }
 
         leaderBoardList = FXCollections.observableArrayList(
             scores
