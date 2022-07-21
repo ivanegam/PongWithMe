@@ -20,6 +20,7 @@ import javafx.util.Duration;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+//MVC Pattern - Game, GameController, and game-view
 public class GameController implements Initializable
 {
     /*

@@ -7,6 +7,7 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+//MVC Pattern - Menu, MenuController, menu-view
 public class MenuController implements Initializable {
 
     Leaderboard leaderboard = new Leaderboard();

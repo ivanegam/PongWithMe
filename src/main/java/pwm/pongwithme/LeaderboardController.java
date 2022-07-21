@@ -16,6 +16,7 @@ import static java.lang.Float.parseFloat;
 import java.util.Collections;
 import java.util.ResourceBundle;
 
+//MVC Pattern - Leaderboard, LeaderboardController, leaderboard-view
 public class LeaderboardController implements Initializable {
 
     @FXML
