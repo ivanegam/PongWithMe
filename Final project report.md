@@ -40,7 +40,7 @@ Stretch goals implemented were:
 ![Original class diagram](CSCI5448_Proj5_UML_class_diag_pattern_use.drawio.svg)
 
 ##### Key changes in system since original design<br/>
-Since the original design and analysis work, we found the observer and decorator patterns unnecessary and thus did not implement them. Instead, we decided for model-view–controller and command.
+Since the original design and analysis work, we found the observer and decorator patterns unnecessary and thus did not implement them. Instead, we decided for model–view–controller and command.
 
 #### 4. Third-party code _vs_ original code statement
 The code in the project is original, except for the following sources, which were utilized and adapted to our needs:
@@ -58,9 +58,9 @@ The code in the project is original, except for the following sources, which wer
 1. Project set-up: [Create a new JavaFX project | IntelliJ IDEA](https://www.jetbrains.com/help/idea/javafx.html)
 1. Stopwatch: [Stopwatch With Source Code | JavaFX - YouTube](https://youtu.be/caD6IZszqEk)
 
-We used several of these sources as a good starting point to develop our project. Our code significantly deviates from the original sources, but it helped us get started.
+We used several of these sources as a good starting point to develop our project. Our code significantly deviates from the original sources, which helped us get started.
 
 #### 5. Statement on the OOAD process for your overall semester project
 1. Implementing patterns pre-determined during the design stage proved challenging. While some were obvious (MVC), in other cases we had to learn as we go which patterns were appropriate as we developed the program.
 1. We found the UML class diagram to be a helpful starting point. Briefly, we started the project by setting up the structures identified in the UML class diagram. However, we found this was not the way forward for this project (too many depenedencies for GUI to figure out). So, instead we began with a simple JavaFX `HelloWorld`-type project and built up from that. We still found the majority of the structures identified in the UML class diagram instructive.
-1. Working with a GUI to build a game, we had to think a lot about the state of objects over time. JavaFx Timelines helped us manage objects over time, such as the positioning of the paddle or ball every 10 milliseconds. The logic to determine the interaction between objects heavily depended on using JavaFX timelines, which proved to be much more efficient than using our "RedrawBoard" method that we had originally envisioned. 
+1. Working with a GUI to build a game, we had to think a lot about the state of objects over time. JavaFX Timelines helped us manage objects over time, such as the positioning of the paddle or ball every 10 milliseconds. The logic to determine the interaction between objects heavily depended on using JavaFX timelines, which proved to be much more efficient than using our `RedrawBoard` method that we had originally envisioned. 
