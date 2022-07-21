@@ -9,7 +9,7 @@ Java version: ```openjdk version "18.0.1.1" 2022-04-22```<br/><br/>
 #### Status summary, class diagram, iteration planning:
 [`Project 6 Update.pdf`](Project%206%20Update.pdf)<br/><br/>
 
-### Project 7: July 20, 2022 — WORK IN PROGRESS
+### Project 7: July 20, 2022
 #### Final project report:
 [`Final project report.pdf`](Final%20project%20report.pdf)<br/>
 
